@@ -17,9 +17,8 @@ export class springBootApiStack extends cdk.Stack {
       natGateways: 1
     })
     //Our ECS Fargate Cluster in this VPC
-    const springbootEcsCluster = new ecs.Cluster(this, "springboot-ecs", {
-      vpc,
-      clusterName: "springbootCluster"
+    const springbootEcsCluster = new ecs.Cluster(this, "springbootCluster", {
+      vpc
     })
     //Our Database
     const mySQLPassword = new secretsmanager.Secret(this, 'DBSecret', {
