@@ -21,8 +21,8 @@ export class springBootApiStack extends cdk.Stack {
       vpc
     })
     //Our Database
-    const mySQLPassword = new secretsmanager.Secret(this, 'DBSecret', {
-      secretName: "SpringbootDB-DBPassword",
+    const mySQLPassword = new secretsmanager.Secret(this, 'springbootDb', {
+      // secretName: "SpringbootDB-DBPassword",
       generateSecretString: {
         excludePunctuation: true
       }
@@ -90,7 +90,6 @@ export class springBootApiStack extends cdk.Stack {
     this.urlOutput = new cdk.CfnOutput(this, 'Url', {
       value: springbootApp.loadBalancer.loadBalancerDnsName,
     });
-
 
     //autoscaling - cpu
     const springbootAutoScaling = springbootApp.service.autoScaleTaskCount({

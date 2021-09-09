@@ -13,7 +13,6 @@ export class springBootApiStage extends Stage {
         Environment: id
       }
     });
-
     this.urlOutput = service.urlOutput
   }
 }

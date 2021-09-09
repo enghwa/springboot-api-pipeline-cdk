@@ -1,18 +1,8 @@
-// import * as cdk from '@aws-cdk/core';
-
-// export class SpringbootApiPipelineCdkStack extends cdk.Stack {
-//   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
-//     super(scope, id, props);
-
-//     // The code that defines your stack goes here
-//   }
-// }
 import { Construct, SecretValue, Stack, StackProps } from '@aws-cdk/core';
 import * as cp from '@aws-cdk/aws-codepipeline';
 import * as cpa from '@aws-cdk/aws-codepipeline-actions';
 import * as pipelines from '@aws-cdk/pipelines';
 import { springBootApiStage } from '../lib/springboot-api-stage';
-
 
 export class SpringbootApiPipelineCdkStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
