@@ -56,8 +56,7 @@ export class SpringbootApiPipelineCdkStack extends Stack {
             ],
             commands: [
                 'npm install',
-                'npm run build',
-                'npm run integration'
+                'npm run build'
             ],
             useOutputs: {
                 SERVICE_URL: serviceUrl
