@@ -37,7 +37,7 @@ export class springBootApiStack extends cdk.Stack {
       engineMode: "serverless",
       engineVersion: "5.6",
       databaseName: 'notes_app',
-      dbClusterIdentifier: "notes-app-dbcluster",
+      // dbClusterIdentifier: "notes-app-dbcluster",
       masterUsername: 'dbaadmin',
       masterUserPassword: mySQLPassword.secretValue.toString(),
 
