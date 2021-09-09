@@ -64,8 +64,7 @@ export class SpringbootApiPipelineCdkStack extends Stack {
         }));
 
         // Prod
-        //
-        // const prodApp = new springBootApiStage(this, 'Prod');
-        // const prodStage = pipeline.addApplicationStage(prodApp);
+        const prodApp = new springBootApiStage(this, 'Prod');
+        const prodStage = pipeline.addApplicationStage(prodApp);
     }
 }
