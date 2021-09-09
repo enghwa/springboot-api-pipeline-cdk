@@ -24,9 +24,10 @@ export class SpringbootApiPipelineCdkStack extends Stack {
         const sourceAction = new cpa.GitHubSourceAction({
             actionName: 'GitHub',
             output: sourceArtifact,
-            oauthToken: SecretValue.secretsManager('github'),
+            oauthToken: SecretValue.secretsManager('github-token'),
             owner: 'enghwa',
-            repo: 'REPO',
+            repo: 'springboot-api-pipeline-cdk',
+            branch: 'main'
         });
 
         const synthAction = pipelines.SimpleSynthAction.standardNpmSynth({
