@@ -31,7 +31,7 @@ export class SpringbootApiPipelineCdkStack extends Stack {
             sourceAction,
             synthAction
         });
-
+        
         // Pre-prod
         //
         const preProdApp = new springBootApiStage(this, 'Pre-Prod');
@@ -53,7 +53,9 @@ export class SpringbootApiPipelineCdkStack extends Stack {
             }
         }));
 
-        // Prod
+        preProdStage.addManualApprovalAction();
+
+        // Prod 
         const prodApp = new springBootApiStage(this, 'Prod');
         const prodStage = pipeline.addApplicationStage(prodApp);
     }
