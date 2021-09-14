@@ -88,8 +88,8 @@ export class springBootApiStack extends cdk.Stack {
     });
     //autoscaling - cpu
     const springbootAutoScaling = springbootApp.service.autoScaleTaskCount({
-      maxCapacity: 6,
-      minCapacity: 1
+      maxCapacity: 9,
+      minCapacity: 3
     })
     springbootAutoScaling.scaleOnCpuUtilization('CpuScaling', {
       targetUtilizationPercent: 45,
