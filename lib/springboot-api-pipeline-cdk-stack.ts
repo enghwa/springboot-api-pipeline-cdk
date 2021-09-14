@@ -31,9 +31,7 @@ export class SpringbootApiPipelineCdkStack extends Stack {
             sourceAction,
             synthAction
         });
-        
         // Pre-prod
-        //
         const preProdApp = new springBootApiStage(this, 'Pre-Prod');
         const preProdStage = pipeline.addApplicationStage(preProdApp);
         const serviceUrl = pipeline.stackOutput(preProdApp.urlOutput);
@@ -49,12 +47,12 @@ export class SpringbootApiPipelineCdkStack extends Stack {
                 'npm run build'
             ],
             useOutputs: {
-                SERVICE_URL: serviceUrl
+                SERVICE_URL: serviceUrl //for user testing
             }
         }));
 
+        //change: to add approval and a prod stage.
         preProdStage.addManualApprovalAction();
-
         // Prod 
         const prodApp = new springBootApiStage(this, 'Prod');
         const prodStage = pipeline.addApplicationStage(prodApp);

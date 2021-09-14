@@ -18,11 +18,11 @@ export class springBootApiStack extends cdk.Stack {
     })
     //Our ECS Fargate Cluster in this VPC
     const springbootEcsCluster = new ecs.Cluster(this, "springbootCluster", {
-      vpc
+      vpc,
+      containerInsights: true
     })
     //Our Database
     const mySQLPassword = new secretsmanager.Secret(this, 'springbootDb', {
-      // secretName: "SpringbootDB-DBPassword",
       generateSecretString: {
         excludePunctuation: true
       }
@@ -37,7 +37,6 @@ export class springBootApiStack extends cdk.Stack {
       engineMode: "serverless",
       engineVersion: "5.6",
       databaseName: 'notes_app',
-      // dbClusterIdentifier: "notes-app-dbcluster",
       masterUsername: 'dbaadmin',
       masterUserPassword: mySQLPassword.secretValue.toString(),
 
@@ -46,11 +45,9 @@ export class springBootApiStack extends cdk.Stack {
         subnetIds: vpc.selectSubnets({ subnetType: ec2.SubnetType.PRIVATE }).subnetIds
       }).ref,
       vpcSecurityGroupIds: [dbSecurityGroup.securityGroupId],
-
       storageEncrypted: true,
       deletionProtection: false,
       backupRetentionPeriod: 14,
-
       scalingConfiguration: {
         autoPause: true,
         secondsUntilAutoPause: 900,
@@ -61,7 +58,7 @@ export class springBootApiStack extends cdk.Stack {
     //Our application in AWS Fargate + ALB
     const springbootApp = new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'springboot app svc', {
       cluster: springbootEcsCluster,
-      desiredCount: 1,
+      desiredCount: 3,
       cpu: 256,
       memoryLimitMiB: 512,
       taskImageOptions: {
@@ -86,11 +83,9 @@ export class springBootApiStack extends cdk.Stack {
       "unhealthyThresholdCount": 2,
       "healthyHttpCodes": "200,301,302"
     })
-
     this.urlOutput = new cdk.CfnOutput(this, 'Url', {
       value: springbootApp.loadBalancer.loadBalancerDnsName,
     });
-
     //autoscaling - cpu
     const springbootAutoScaling = springbootApp.service.autoScaleTaskCount({
       maxCapacity: 6,
