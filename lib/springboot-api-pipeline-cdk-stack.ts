@@ -50,11 +50,7 @@ export class SpringbootApiPipelineCdkStack extends Stack {
                 SERVICE_URL: serviceUrl //for user testing
             }
         }));
-
-        //change: to add approval and a prod stage.
-        preProdStage.addManualApprovalAction();
-        // Prod 
-        const prodApp = new springBootApiStage(this, 'Prod');
-        const prodStage = pipeline.addApplicationStage(prodApp);
+        
+        //
     }
 }
