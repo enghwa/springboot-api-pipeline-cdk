@@ -59,8 +59,8 @@ export class springBootApiStack extends cdk.Stack {
     const springbootApp = new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'springboot app svc', {
       cluster: springbootEcsCluster,
       desiredCount: 3,
-      cpu: 256,
-      memoryLimitMiB: 512,
+      cpu: 512,
+      memoryLimitMiB: 1024,
       taskImageOptions: {
         image: ecs.ContainerImage.fromAsset('./springboot-app'),
         containerPort: 8080,
