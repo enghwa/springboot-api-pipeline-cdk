@@ -12,10 +12,7 @@ export class springBootApiStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     // Our VPC
-    const vpc = new ec2.Vpc(this, "springboot-vpc", {
-      maxAzs: 2,
-      natGateways: 1
-    })
+    const vpc = new ec2.Vpc(this, "springboot-vpc", { maxAzs: 2 })
     //Our ECS Fargate Cluster in this VPC
     const springbootEcsCluster = new ecs.Cluster(this, "springbootCluster", {
       vpc,

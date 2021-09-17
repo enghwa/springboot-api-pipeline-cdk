@@ -3,6 +3,7 @@ import * as cp from '@aws-cdk/aws-codepipeline';
 import * as cpa from '@aws-cdk/aws-codepipeline-actions';
 import * as pipelines from '@aws-cdk/pipelines';
 import { springBootApiStage } from '../lib/springboot-api-stage';
+import { springBootApiStack } from './springboot-api-stack';
 
 
 export class SpringbootApiPipelineCdkStack extends Stack {
@@ -54,12 +55,6 @@ export class SpringbootApiPipelineCdkStack extends Stack {
         }));
         
         //
-        // preProdStage.addManualApprovalAction();
-        // // Prod 
-        // const prodApp = new springBootApiStage(this, 'Prod');
-        // const prodStage = pipeline.addApplicationStage(prodApp);
-
         
-
     }
 }
