@@ -24,7 +24,6 @@
     <div id="contents-main">
       <div class="lead">
         <strong>My little Notebook v1:</strong>
-        <!-- <span th:text="${eventName}"></span> -->
       </div>
 
       <div id="contents">
@@ -51,23 +50,6 @@
           </tr>
           <tbody>
         </table>
-    
-        <!-- Since we create a Vue component pointing to id=contents,
-                 Vue will generate a unordered list of items such
-                 as this inside this div.
-                 v-for will cause a loop to run over all players
-                 as per the players array found in app.data
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-            -->
-        <!-- <ul>
-          <li style="list-style-type:none" v-for="player in players">
-            <player-card v-bind:player="player" v-bind:key="player.id">
-            </player-card>
-          </li>
-        </ul> -->
       </div>
     </div>
   </div>
@@ -81,35 +63,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/babel">
-    // player-card is now a Vue component that generates a 'card' showing a player
-    // It can be used
-    // declaratively like <player-card v-bind:player="someplayer">
-    Vue.component('player-card', {
-      props: ['player'],
-      template: `<div class="card">
-                    <div class="card-body">
-                        <h6 class="card-title">
-                            {{ player.name }}
-                        </h6>
-                        <p class="card-text">
-                            <div>
-                            {{ player.description }}
-                            </div>
-                        </p>
-                    </div>
-                </div>`
-    });
-
+    
     var app = new Vue({
       el: '#contents',
       data: {
         info: null,
         title: '',
-        content: '',
-        players: [
-          { id: "1", name: "Lionel Messi", description: "Argentina's superstar" },
-          { id: "2", name: "Christiano Ronaldo", description: "Portugal top-ranked player" }
-        ]
+        content: ''
       },
 
       methods: {
@@ -138,7 +98,6 @@
           .then(response => (this.info = response))
       }
     });
-
   </script>
 </body>
 </html>
